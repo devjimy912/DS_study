@@ -30,11 +30,6 @@ inline void ListNode<T>::SetData(T data){
 }
 
 template <typename T>
-inline void ListNode<T>::SetData(){
-    this.data = data;
-}
-
-template <typename T>
 inline T ListNode<T>::GetData(){
     return data;
 }
@@ -42,11 +37,6 @@ inline T ListNode<T>::GetData(){
 template <typename T>
 inline void ListNode<T>::SetLink(ListNode<T> *link){
     this->link = link;
-}
-
-template <typename T>
-inline void ListNode<T>::SetLink(){
-
 }
 
 template <typename T>
