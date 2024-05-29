@@ -1,14 +1,14 @@
 #ifndef LL_H
 #define LL_H
 
-#include <iostream>
-#include "LinkedListInterface.h"
+#include "LinkedListInterface.h"e
 
 template <typename T>
 class LinkedList : public LinkedListInterface<T> {
 private:
-    
-
+    list_node *head; 
+    list_node *tail;
+    list_node *curr;
 public:
     LinkedList();
     ~LinkedList();

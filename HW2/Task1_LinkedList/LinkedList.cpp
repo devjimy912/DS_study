@@ -1,12 +1,13 @@
 #include <iostream>
+#include "LinkedList.h"
 
-
+using namespace std;
 
 
 
 template <typename T>
 inline LinkedList<T>::LinkedList(){
-
+    
 }
 
 template <typename T>
