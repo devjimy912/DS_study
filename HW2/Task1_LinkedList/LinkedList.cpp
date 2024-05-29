@@ -7,7 +7,8 @@ using namespace std;
 
 template <typename T>
 inline LinkedList<T>::LinkedList(){
-    
+    head->link = nullptr;
+    tail->link = head;
 }
 
 template <typename T>
@@ -16,8 +17,8 @@ inline LinkedList<T>::~LinkedList(){
 }
 
 template <typename T>
-inline void LinkedList<T>::add(E item)
-{
+inline void LinkedList<T>::add(T item){
+
 }
 
 template <typename T>
@@ -31,7 +32,7 @@ inline void LinkedList<T>::removeFirst()
 }
 
 template <typename T>
-inline boolean LinkedList<T>::remove(E item)
+inline boolean LinkedList<T>::remove(T item)
 {
     return boolean();
 }
@@ -47,7 +48,7 @@ inline void LinkedList<T>::invert()
 }
 
 template <typename T>
-inline E LinkedList<T>::get(E item) const
+inline E LinkedList<T>::get(T item) const
 {
     return E();
 }
