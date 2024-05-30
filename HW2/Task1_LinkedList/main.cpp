@@ -8,6 +8,33 @@
 using namespace std;
 
 int main(){
+    //LinkedList();
+    LinkedList<int> list;
+    // ~LinkedList();
+
+    // void add(T item); // insert
+    list.add(1);
+    list.add(2);
+    list.add(3);
+    list.add(4);
+    // void removeLast();
+    list.removeLast();
+    // void removeFirst();
+    list.removeFirst();
+    // bool remove(T item);
+
+    // void removeAll();
+
+    // void invert();
+
+    // T get(T item) const; // retrieve
+
+    // T get(int index) const; // retrieve
+
+    // bool isEmpty() const;
+
+    // bool print() const;
+
     
     return 0;
 }
