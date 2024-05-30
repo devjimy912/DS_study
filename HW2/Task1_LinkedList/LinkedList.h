@@ -9,7 +9,6 @@ class LinkedList : public LinkedListInterface<T> {
 private:
     ListNode<T> *head; 
     ListNode<T> *tail;
-    ListNode<T> *curr;
 public:
     LinkedList();
     ~LinkedList();
@@ -19,8 +18,8 @@ public:
     boolean remove(T item);
     void removeAll();
     void invert();
-    E get(T item) const; // retrieve
-    E get(int index) const; // retrieve
+    T get(T item) const; // retrieve
+    T get(int index) const; // retrieve
     bool isEmpty() const;
     bool print() const;
 };
