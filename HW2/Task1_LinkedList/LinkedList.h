@@ -43,6 +43,7 @@ inline LinkedList<T>::~LinkedList(){
 }
 
 template <typename T>
+//수정필요
 inline void LinkedList<T>::add(T item){
     //추가 메소드
     //노드 하나 생성하고
@@ -132,13 +133,14 @@ inline void LinkedList<T>::invert(){
     //스택에 넣었다 빼기
     std::stack<T> stack;
     ListNode<T> *curr = head;
-    while(curr->link != nullptr){
+    while(curr != nullptr){
         stack.push(curr->data);
         curr = curr->link;
     }
     curr = head;
-    while(curr->link != nullptr){
-        curr->data = stack.pop();
+    while(curr != nullptr){
+        curr->data = stack.top();
+        stack.pop();
         curr = curr->link;
     }
 }

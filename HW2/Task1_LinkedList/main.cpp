@@ -19,6 +19,8 @@ int main(){
     list.add(4);
     cout << "List : " << endl;
     list.print(); //For check
+
+    /*
     // void removeLast();
     list.removeLast();
     cout << "List : " << endl;
@@ -62,6 +64,7 @@ int main(){
     }
     // ~LinkedList()
     list.~LinkedList();
+    */
 
     
     return 0;
