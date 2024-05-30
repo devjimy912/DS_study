@@ -20,7 +20,7 @@ public:
     bool remove(T item);
     void removeAll();
     void invert();
-    T get(T item) const; // retrieve
+    bool contain(T item) const; // retrieve
     T get(int index) const; // retrieve
     bool isEmpty() const;
     bool print() const;

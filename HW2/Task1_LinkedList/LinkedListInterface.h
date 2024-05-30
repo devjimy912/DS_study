@@ -12,7 +12,7 @@ public:
     virtual bool remove(E item) = 0;
     virtual void removeAll() = 0;
     virtual void invert() = 0;
-    virtual E get(E item) const = 0; // retrieve
+    virtual bool contain(E item) const = 0; // retrieve
     virtual E get(int index) const = 0; // retrieve
     virtual bool isEmpty() const = 0;
     virtual bool print() const = 0;
