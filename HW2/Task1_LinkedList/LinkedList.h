@@ -6,6 +6,8 @@
 #include <stack>
 #include <iostream>
 
+// using namespace std;
+
 template <typename T>
 class LinkedList : public LinkedListInterface<T> {
 private:
@@ -49,9 +51,25 @@ inline void LinkedList<T>::add(T item){
     //노드 하나 생성하고
     //테일이 가리키는 노드의 link에 위에서 만든 노드를 넣는다
     //마지막으로 테일이 위에서 만든 노드를 가리키게 한다
-    ListNode<T> node(item);
-    tail->link = node;
-    tail = node;
+
+    //여기서 프로그램이 터졌다.
+    //다시 원인 찾기 시작.
+
+    // cout<<"call add method"<<endl;
+    ListNode<T> *node = new ListNode<T>(item);
+    // cout<<"generate new node"<<endl;
+
+    //문제의 지점. & 안넣으면 에러. 넣었더니 세그먼트 폴트 발생하는 거네..
+    if(head == nullptr){
+        head = node;
+        tail = node;
+        // cout<<"first node in stack"<<endl;
+    }else{
+        tail->link = node;
+        // cout<<"link"<<endl;
+        tail = node;
+        // cout<<"change tail"<<endl;
+    }
 }
 
 template <typename T>
@@ -60,12 +78,17 @@ inline void LinkedList<T>::removeLast(){
     //테일을 지우고 delete
     //while문으로 마지막 노드를 테일이 가리키게 한다
     ListNode<T> *temp = head;
-    while(temp->link != nullptr){ //temp가 가리키는 노드가 가리키는 게 널인가.
-        temp = temp->link;
+    if(temp->link == nullptr){
+        delete temp;
+        tail = head;
+    }else{
+        while(temp->link->link != nullptr){ //temp가 가리키는 노드가 가리키는 게 널인가.
+            temp = temp->link;
+        }
+        temp->link = nullptr;
+        delete tail;
+        tail = temp;
     }
-    temp->link = nullptr;
-    delete tail;
-    tail = temp;
 }
 
 template <typename T>
@@ -106,6 +129,11 @@ inline bool LinkedList<T>::remove(T item){
             prev = curr;
             curr = curr->link;
         }
+        if(curr->data == item){
+            prev->link = curr->link;
+            delete curr;
+            return true;
+        }
     }
     return false;
 }
@@ -118,13 +146,13 @@ inline void LinkedList<T>::removeAll(){
     //헤드노드 delete
     //헤드가 curr가 가리키는 노드를 가리키도록 설정
     //반복
-    ListNode<T> *temp;
-    while(head->link != nullptr){
-        temp = head->link;
-        delete head;
-        head = temp;
+    ListNode<T> *temp = head;
+    while(temp != nullptr){
+        ListNode<T> *next = temp->link;
+        delete temp;
+        temp = next;
     }
-    delete head;
+    head = nullptr;
 }
 
 template <typename T>
@@ -150,11 +178,15 @@ inline bool LinkedList<T>::contain(T item) const{
     //item이 리스트에 포함되었는지 확인
     //while문으로 돌리면서 if로 확인
     ListNode<T> *curr = head;
-    do {
+    while(curr->link != nullptr){
         if(curr->data == item){
             return true;
         }
-    }while(curr->link != nullptr);
+        curr = curr->link;
+    }
+    if(curr->data == item){
+        return true;
+    }
     return false;
 }
 
@@ -185,11 +217,16 @@ inline bool LinkedList<T>::print() const{
     //이터레이터는 따로 없으니 curr만들어서 하면 될듯
     //curr = curr->link
     ListNode<T> *curr = head;
-    do {
+    if(head == nullptr){
+        return false;
+    }else{
+        while(curr->link != nullptr){
+            std::cout << curr->data << " ";
+            curr = curr->link;
+        }
         std::cout << curr->data << std::endl;
-        curr = curr->link;
-    }while(curr->link != nullptr);
-    return false;
+        return true;
+    }
 }
 
 #endif
