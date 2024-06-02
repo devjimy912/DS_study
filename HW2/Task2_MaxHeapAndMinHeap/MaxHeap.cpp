@@ -2,7 +2,7 @@
 #include <iostream>
 
 template <typename T>
-MaxHeap::Heap(const int &size){
+MaxHeap::MaxHeap(const int &size){
     this->list = new T[size];
     this->maxSize = size;
     this->last = -1;

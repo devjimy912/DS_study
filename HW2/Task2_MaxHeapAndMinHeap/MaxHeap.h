@@ -11,7 +11,7 @@ class MaxHeap : public HeapInterface {
         int last;
 
     public:
-        Heap(const int &size);
+        MaxHeap(const int &size);
         void insert(const T& data) = 0;
         T extract() = 0; // same as delete
         void swap(T& dataA, T& dataB) = 0;
