@@ -3,6 +3,19 @@
 #define LL_INTERFACE_H
 
 template <typename T>
+class Node{
+    public:
+        T data;
+        Node* left;
+        Node* right;
+        Node(T data){
+            this->data = data;
+            left = nullptr;
+            right = nullptr;
+        }
+}
+
+template <typename T>
 class HeapInterface {
 public:
     
@@ -10,7 +23,7 @@ public:
 
     virtual T extract() = 0; // same as delete
 
-     virtual void swap(T& dataA, T& dataB) = 0;
+    virtual void swap(T& dataA, T& dataB) = 0;
 
     virtual T peek() const = 0; // get the root item but not delete
 
