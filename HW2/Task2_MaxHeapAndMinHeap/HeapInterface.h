@@ -3,19 +3,6 @@
 #define LL_INTERFACE_H
 
 template <typename T>
-class Node{
-    public:
-        T data;
-        Node* left;
-        Node* right;
-        Node(T data){
-            this->data = data;
-            left = nullptr;
-            right = nullptr;
-        }
-}
-
-template <typename T>
 class HeapInterface {
 public:
     
