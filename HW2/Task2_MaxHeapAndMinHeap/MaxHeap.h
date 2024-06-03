@@ -36,36 +36,41 @@ MaxHeap<T>::MaxHeap(const int &size){
 
 template <typename T>
 void MaxHeap<T>::insert(const T& data){
-    cout<<"Method call"<<endl;
+    // cout<<"Method call"<<endl;
+    if(isFull()){
+        cout<<"Heap already full"<<endl;
+        return;
+    }
     //일단 값을 넣어
     this->last++;
-    cout<<"last++"<<endl;
+    // cout<<"last++"<<endl;
     this->list[this->last] = data;
-    cout<<"Insert data"<<endl;
+    // cout<<"Insert data"<<endl;
     //그리고 값을 비교한다.
     int curr = findParent(this->last);
     int dummy = this->last;
     //while문 수정 필요.
-    while(curr){
-        if(this->list[curr] < this->list[dummy]){
-            int temp = this->list[curr];
-            this->list[curr] = this->list[dummy];
-            this->list[dummy] = temp;
-        }
+    while(1){
+        swap(this->list[curr], this->list[dummy]);
+        // cout<<"swap"<<endl;
         dummy = curr;
         curr = findParent(curr);
+        // cout<<curr<<endl;
+        if(curr < 1){
+            break;
+        }
     }
-    cout<<"End While"<<endl;
+    // cout<<"End While"<<endl;
     //마지막. 0번 인덱스와 비교
-    if(this->list[curr] < this->list[dummy]){
-        int temp = this->list[curr];
-        this->list[curr] = this->list[dummy];
-        this->list[dummy] = temp;
-    }
+    // swap(this->list[curr], this->list[dummy]);
+    // cout<<"0to0"<<endl;
 }
 
 template <typename T>
 int MaxHeap<T>::findParent(const int& index){
+    if (index == 0) {
+        return -1; // 루트 노드의 부모는 없음
+    }
     if(index%2 == 1){
         return (index-1)/2;
     }else{
@@ -77,6 +82,7 @@ template <typename T>
 T MaxHeap<T>::extract(){// same as delete
     //만약 비었다면 빈 값보내기
     if(isEmpty()){
+        cout<<"Heap is Empty"<<endl;
         return T();
     }
     //일단 값 저장
