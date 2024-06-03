@@ -83,8 +83,8 @@ void BinarySearchTree<T>::remove(const T& key){
     }
     //찾고 없애기
     Node<T>* temp = middle;
-    Node<T>* prev;
-    int a;
+    Node<T>* prev = nullptr;
+    int a = 0;
     while(1){
         if(temp->data > key){
             prev=temp;
@@ -97,6 +97,7 @@ void BinarySearchTree<T>::remove(const T& key){
         }else{//찾음. 공백 메우기
             if(temp->right_child == nullptr && temp->left_child == nullptr){
                 delete temp;
+                temp = nullptr;
                 if(a){
                     prev->right_child = nullptr;
                 }else{
@@ -109,6 +110,7 @@ void BinarySearchTree<T>::remove(const T& key){
                     prev->left_child = temp->right_child;
                 }
                 delete temp;
+                temp=nullptr;
             }else if(temp->right_child == nullptr && temp->left_child != nullptr){
                 if(a){
                     prev->right_child = temp->left_child;
@@ -116,6 +118,7 @@ void BinarySearchTree<T>::remove(const T& key){
                     prev->left_child = temp->left_child;
                 }
                 delete temp;
+                temp=nullptr;
             }else{//둘다있는거
                 Node<T>* change = temp->left_child;
                 while(change->right_child != nullptr){
@@ -125,6 +128,7 @@ void BinarySearchTree<T>::remove(const T& key){
                 temp->data = change->data;
                 if(change->right_child == nullptr && change->left_child == nullptr){
                     delete change;
+                    change = nullptr;
                     if(a){
                         prev->right_child = nullptr;
                     }else{
@@ -137,6 +141,8 @@ void BinarySearchTree<T>::remove(const T& key){
                         prev->left_child = change->right_child;
                     }
                     delete change;
+                    change = nullptr;
+
                 }else if(change->right_child == nullptr && change->left_child != nullptr){
                     if(a){
                         prev->right_child = change->left_child;
@@ -144,6 +150,7 @@ void BinarySearchTree<T>::remove(const T& key){
                         prev->left_child = change->left_child;
                     }
                     delete change;
+                    change = nullptr;
                 }
             }
         }
@@ -221,8 +228,9 @@ void BinarySearchTree<T>::clear() {
             break;
         }
         if(temp->right_child == nullptr && temp->left_child == nullptr){
-            delete temp;
             temp = middle;
+            delete temp;
+            temp = nullptr;
         }else{
             if(temp->right_child != nullptr){
                 temp = temp->right_child;
