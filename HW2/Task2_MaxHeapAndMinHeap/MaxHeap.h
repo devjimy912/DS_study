@@ -36,6 +36,7 @@ MaxHeap<T>::MaxHeap(const int &size){
 
 template <typename T>
 void MaxHeap<T>::insert(const T& data){
+    
     // cout<<"Method call"<<endl;
     if(isFull()){
         cout<<"Heap already full"<<endl;
@@ -47,29 +48,31 @@ void MaxHeap<T>::insert(const T& data){
     this->list[this->last] = data;
     // cout<<"Insert data"<<endl;
     //그리고 값을 비교한다.
-    int curr = findParent(this->last);
-    int dummy = this->last;
+    int child = this->last;
+    int parent = findParent(child);
+    
     //while문 수정 필요.
     while(1){
-        swap(this->list[curr], this->list[dummy]);
-        // cout<<"swap"<<endl;
-        dummy = curr;
-        curr = findParent(curr);
+        // cout<<this->list[parent]<<" swap "<<this->list[child]<<endl;
+        swap(this->list[parent], this->list[child]);
+        
+        child = parent;
+        parent = findParent(child);
         // cout<<curr<<endl;
-        if(curr < 1){
+        if(parent < 1){
             break;
         }
     }
     // cout<<"End While"<<endl;
     //마지막. 0번 인덱스와 비교
-    // swap(this->list[curr], this->list[dummy]);
+    swap(this->list[parent], this->list[child]);
     // cout<<"0to0"<<endl;
 }
 
 template <typename T>
 int MaxHeap<T>::findParent(const int& index){
     if (index == 0) {
-        return -1; // 루트 노드의 부모는 없음
+        return 0; // 루트 노드의 부모는 없음
     }
     if(index%2 == 1){
         return (index-1)/2;
@@ -92,7 +95,7 @@ T MaxHeap<T>::extract(){// same as delete
     this->last--;
     //이제 리스트 전체를 스왚으로 헤짚으면 됨.
     int num = 0;
-    while((num+1)*2 <= this->last){
+    while(num*2+2 <= this->last){
         swap(this->list[num], this->list[num*2+1]);
         swap(this->list[num], this->list[num*2+2]);
         num++;
