@@ -54,7 +54,8 @@
         "vector": "cpp",
         "algorithm": "cpp",
         "concepts": "cpp",
-        "type_traits": "cpp"
+        "type_traits": "cpp",
+        "numbers": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
