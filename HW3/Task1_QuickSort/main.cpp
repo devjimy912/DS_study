@@ -1,6 +1,7 @@
+//만들고 나서 파일 복사해서 데탑에 넣고 데탑에서 커밋하고 맥에서 당겨오거나 클론해야할듯..
 #include <iostream>
 #include <string>
-#include "quicksort.h"
+#include "QuickSort.h"
 
 struct Student {
     int id;
@@ -36,6 +37,7 @@ int main() {
     std::cout << "Sorted array: \n";
     for (int i = 0; i < n; i++)
         std::cout << arr[i] << std::endl;
+
     return 0;
 }
 
