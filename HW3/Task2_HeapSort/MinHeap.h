@@ -1,6 +1,8 @@
 #ifndef MINHEAP_H
 #define MINHEAP_H
 
+#include <iostream>
+
 using namespace std;
 
 template <typename T>
