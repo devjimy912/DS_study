@@ -1,44 +1,55 @@
-#include "MinHeap.h"
+#include <iostream>
 
-template <typename T>
-void heapSort(T* arr, MinHeap<T> minheap);
+void heapSort(int list[], int n);
 
-template <typename T>
-void adjust(T* arr, MinHeap<T> minheap);
+void adjust(int arr[], int root, int n);
+
+void swap(int* a, int* b);
 
 int main(){
     int size = 5;
     int list[size] = {45,7,25,8,35};
 
-    MinHeap<int> mh(size);
-
-    //adjust
-    adjust(list, mh);
-
-    //heapsort
-    int sorted[size];
-    heapSort(sorted, mh);
+    heapSort(list, size);
 
     for(int i=0; i<size; i++){
-        std::cout<<"["<<sorted[i]<<"]";
+        std::cout<<"["<<list[i]<<"]";
     }
     std::cout<<std::endl;
 
     return 0;
 }
 
-template <typename T>
-void heapSort(T* arr, MinHeap<T> minheap){
-    int size = sizeof(arr) / sizeof(arr[0]);
-    for (int i = 0; i < size; ++i) {
-        arr[i] = minheap.extract();
+void adjust(int list[], int root, int n){
+    int child;
+    int temp = list[root];
+    child = 2*root+1;
+    while(child < n){
+        if(child+1 < n && list[child] < list[child+1]){
+            child++;
+        }
+        if(temp >= list[child]){
+            break;
+        }
+        list[root] = list[child];
+        root = child;
+        child = root*2+1;
+    }
+    list[root] = temp;
+}
+
+void heapSort(int list[], int n){
+    for (int i=n/2-1; i>=0; i--){
+        adjust(list, i, n);
+    }
+    for (int i=n-1; i>0; i--) {
+        swap(&list[0], &list[i]);
+        adjust(list, 0, i);
     }
 }
 
-template <typename T>
-void adjust(T* arr, MinHeap<T> minheap){
-    int size = sizeof(arr) / sizeof(arr[0]);
-    for(int i=0; i<size; i++){
-        minheap.insert(arr[i]);
-    }
+void swap(int* a, int* b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
 }
