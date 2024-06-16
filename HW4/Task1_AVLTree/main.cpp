@@ -14,24 +14,28 @@ int main() {
     avlTree.Insert(2, "Node 2");
     avlTree.Insert(7, "Node 7");
     std::cout << "Tree structure after LL case:\n";
+    //왼쪽 자식의 왼쪽 추가
     avlTree.PrintTree();
     std::cout << std::endl;
 
     std::cout << "Inserting LR case: 10, 5, 15, 7, 12\n";
     avlTree.Insert(12, "Node 12");
     std::cout << "Tree structure after LR case:\n";
+    //왼쪽 자식의 오른쪽 추가
     avlTree.PrintTree();
     std::cout << std::endl;
 
     std::cout << "Inserting RR case: 10, 5, 15, 12, 20\n";
     avlTree.Insert(20, "Node 20");
     std::cout << "Tree structure after RR case:\n";
+    //오른쪽 자식의 오른쪽 추가
     avlTree.PrintTree();
     std::cout << std::endl;
 
     std::cout << "Inserting RL case: 10, 5, 15, 12, 17\n";
     avlTree.Insert(17, "Node 17");
     std::cout << "Tree structure after RL case:\n";
+    //오른쪽 자식의 왼쪽 추가
     avlTree.PrintTree();
     std::cout << std::endl;
 
