@@ -28,14 +28,19 @@ private:
 };
 
 template <class K, class E>
-inline E &AVL<K, E>::Search(const K &_k) const
-{
+inline E &AVL<K, E>::Search(const K &_k) const{
     // TODO: 여기에 return 문을 삽입합니다.
+    AvlNode<K,E> *p = root;
+    while (p) {
+        if (_k < p->key) p = p->leftChild;
+        else if (_k > p->key) p = p->rightChild;
+        else return p->element; // 키를 찾으면 해당 노드의 값을 반환
+    }
+    throw std::runtime_error("Key not found"); // 키를 찾지 못한 경우 예외 발생
 }
 
 template <class K, class E>
-inline void AVL<K, E>::Insert(const K &_k, const E &_e)
-{
+inline void AVL<K, E>::Insert(const K &_k, const E &_e){
 
     if(!root) { // 특별한 경우 : 공백 트리
         root = new AvlNode<K,E>(_k,_e);
@@ -43,10 +48,11 @@ inline void AVL<K, E>::Insert(const K &_k, const E &_e)
     }
 
     // 단계 1: e를 삽입할 위치를 찾는다.
-    AvlNode<K,E> *a = nullptr, // 균형 인수 +/- 1을 가진 가장 최근 노드
-                *pa = nullptr, // a의 부모
-                *p = root, // p는 트리 안에서 이동
-                *pp = nullptr; // p의 부모
+    AvlNode<K,E> *a = nullptr; // 균형 인수 +/- 1을 가진 가장 최근 노드
+    AvlNode<K,E> *pa = nullptr; // a의 부모
+    AvlNode<K,E> *p = root; // p는 트리 안에서 이동
+    AvlNode<K,E> *pp = nullptr; // p의 부모
+
     while(p) {
         if(p->bf) {
             a = p; 
