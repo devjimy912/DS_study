@@ -7,27 +7,26 @@ int main() {
     AVL<int, std::string> avlTree;
 
     // Insertion tests
-    std::cout << "Inserting LL case: 10, 5, 15, 2, 7\n";
+    std::cout << "Inserting LL case: 10, 7, 5\n";
     avlTree.Insert(10, "Node 10");
-    avlTree.Insert(5, "Node 5");
-    avlTree.Insert(15, "Node 15");
-    avlTree.Insert(2, "Node 2");
     avlTree.Insert(7, "Node 7");
+    avlTree.Insert(5, "Node 5");
     std::cout << "Tree structure after LL case:\n";
     //왼쪽 자식의 왼쪽 추가
     avlTree.PrintTree();
     std::cout << std::endl;
 
-    std::cout << "Inserting LR case: 10, 5, 15, 7, 12\n";
-    avlTree.Insert(12, "Node 12");
-    std::cout << "Tree structure after LR case:\n";
+    std::cout << "Inserting LR case: 10, 7, 5, 13, 16\n";
+    avlTree.Insert(13, "Node 13");
+    avlTree.Insert(16, "Node 16");
+    std::cout << "Tree structure after RR case:\n";
     //왼쪽 자식의 오른쪽 추가
     avlTree.PrintTree();
     std::cout << std::endl;
 
     std::cout << "Inserting RR case: 10, 5, 15, 12, 20\n";
     avlTree.Insert(20, "Node 20");
-    std::cout << "Tree structure after RR case:\n";
+    std::cout << "Tree structure after LR case:\n";
     //오른쪽 자식의 오른쪽 추가
     avlTree.PrintTree();
     std::cout << std::endl;
