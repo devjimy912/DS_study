@@ -16,9 +16,9 @@ int main() {
     avlTree.PrintTree();
     std::cout << std::endl;
 
-    std::cout << "Inserting LR case: 10, 7, 5, 13, 16\n";
-    avlTree.Insert(13, "Node 13");
-    avlTree.Insert(16, "Node 16");
+    std::cout << "Inserting LR case: 10, 7, 5, 1, 3\n";
+    avlTree.Insert(13, "Node 1");
+    avlTree.Insert(16, "Node 3");
     std::cout << "Tree structure after RR case:\n";
     //왼쪽 자식의 오른쪽 추가
     avlTree.PrintTree();
