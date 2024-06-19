@@ -1,8 +1,6 @@
 #include <iostream>
 #include "AVLTree.h"
 
-using namespace std;
-
 int main() {
     AVL<int, std::string> avlTree;
 
@@ -36,6 +34,7 @@ int main() {
 
     std::cout << "Inserting RR case: 3, 5, 7, 9, 11\n";
     avlTree.Insert(9, "Node 9");
+    // avlTree.PrintTree();
     avlTree.Insert(11, "Node 11");
     std::cout << "Tree structure after RR case:\n";
     avlTree.PrintTree();
@@ -55,13 +54,39 @@ int main() {
 
     std::cout << "Inserting RL case: 5, 7, 9, 11, 13\n";
     avlTree.Insert(13, "Node 13");
+    // avlTree.PrintTree();
     avlTree.Insert(11, "Node 11");
     std::cout << "Tree structure after RL case:\n";
     avlTree.PrintTree();
     std::cout << std::endl;
 
     //Remaining : L-1, R1
+
+    //for L-1 deletion
+    std::cout << "Deletion Setting L-1 case: 3, 5, 7, 9, 11, 13, 15\n";
+    avlTree.Insert(3, "Node 3");
+    avlTree.Insert(15, "Node 15");
+    avlTree.PrintTree();
+
+    //Deletion case L-1
+    std::cout << "Deleting L-1 case: 3\n";
+    avlTree.Delete(3);
+    std::cout << "Tree structure after L-1 case:\n";
+    avlTree.PrintTree();
+    std::cout << std::endl;
     
+    //for R1 deletion
+    std::cout << "Deletion Setting R1 case: 3, 5, 7, 9, 11, 13, 15\n";
+    avlTree.Insert(3, "Node 3");
+    avlTree.PrintTree();
+
+    //Deletion case R1
+    std::cout << "Deleting R1 case: 15\n";
+    avlTree.Delete(15);
+    std::cout << "Tree structure after R1 case:\n";
+    avlTree.PrintTree();
+    std::cout << std::endl;
+
 
     return 0;
 }

@@ -59,7 +59,7 @@ inline E& AVL<K, E>::Search(const K &_k) const {
 
 template <class K, class E>
 inline void AVL<K, E>::Insert(const K &_k, const E &_e) {
-    std::cout<<"insert"<<std::endl;
+    // std::cout<<"insert"<<std::endl;
     if (!root) {
         root = new AvlNode<K,E>(_k,_e);
         return;
@@ -149,12 +149,15 @@ inline void AVL<K, E>::Insert(const K &_k, const E &_e) {
         }
     } else {
         if (b->bf == -1) {
+            // std::cout<<" a "<<a->key<<" b "<<b->key<<std::endl;
             a->rightChild = b->leftChild;
             b->leftChild = a;
             a->bf = 0;
             b->bf = 0;
         } else {
+           
             c = b->leftChild;
+            // std::cout<<" a "<<a->key<<" b "<<b->key<<" c "<<c->key<<std::endl;
             b->leftChild = c->rightChild;
             a->rightChild = c->leftChild;
             c->rightChild = b;
@@ -175,6 +178,7 @@ inline void AVL<K, E>::Insert(const K &_k, const E &_e) {
             }
             c->bf = 0;
             b = c;
+            // std::cout<<" a "<<a->key<<" b "<<b->key<<" c "<<c->key<<std::endl;
         }
     }
 
@@ -221,7 +225,7 @@ AvlNode<K,E>* AVL<K, E>::leftRotate(AvlNode<K,E>* x) {
 
 template <class K, class E>
 void AVL<K, E>::PrintTree() const {
-    std::cout<<"printtree"<<std::endl;
+    // std::cout<<"printtree"<<std::endl;
     PrintTree(root, 0);
 }
 
@@ -244,7 +248,7 @@ void AVL<K, E>::PrintTree(AvlNode<K,E> *node, int space) const {
 
 template <class K, class E>
 AvlNode<K,E>* AVL<K, E>::findMin(AvlNode<K,E>* node) const {
-    std::cout<<"findmin"<<std::endl;
+    // std::cout<<"findmin"<<std::endl;
     while (node->leftChild != nullptr) {
         node = node->leftChild;
     }
@@ -258,27 +262,39 @@ AvlNode<K,E>* AVL<K, E>::deleteNode(AvlNode<K,E>* node, const K& key) {
         return node;
 
     if (key < node->key) {
+        PrintTree();
         node->leftChild = deleteNode(node->leftChild, key);
+        PrintTree();
     } else if (key > node->key) {
+        PrintTree();
         node->rightChild = deleteNode(node->rightChild, key);
+        PrintTree();
     } else {
         if ((node->leftChild == nullptr) || (node->rightChild == nullptr)) {
+            PrintTree();
             AvlNode<K,E>* temp = node->leftChild ? node->leftChild : node->rightChild;
 
             if (temp == nullptr) {
                 temp = node;
                 node = nullptr;
+                PrintTree();
             } else {
                 *node = *temp;
+                PrintTree();
             }
             delete temp;
+            PrintTree();
         } else {
+            PrintTree();
             AvlNode<K,E>* temp = findMin(node->rightChild);
 
             node->key = temp->key;
+            PrintTree();
             node->element = temp->element;
+            PrintTree();
 
             node->rightChild = deleteNode(node->rightChild, temp->key);
+            PrintTree();
         }
     }
 
@@ -296,10 +312,12 @@ AvlNode<K,E>* AVL<K, E>::deleteNode(AvlNode<K,E>* node, const K& key) {
     }
 
     if (node->bf < -1 && height(node->rightChild->rightChild) >= height(node->rightChild->leftChild)) {
+        std::cout<<"1qjs"<<std::endl;
         return leftRotate(node);
     }
 
     if (node->bf < -1 && height(node->rightChild->rightChild) < height(node->rightChild->leftChild)) {
+        std::cout<<"2qjs"<<std::endl;
         node->rightChild = rightRotate(node->rightChild);
         return leftRotate(node);
     }
@@ -309,6 +327,6 @@ AvlNode<K,E>* AVL<K, E>::deleteNode(AvlNode<K,E>* node, const K& key) {
 
 template <class K, class E>
 inline void AVL<K, E>::Delete(const K &_k) {
-    std::cout<<"delete"<<std::endl;
+    // std::cout<<"delete"<<std::endl;
     root = deleteNode(root, _k);
 }
