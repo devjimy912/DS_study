@@ -104,7 +104,7 @@ void HashTable<K, V>::remove(const K &key){
     }
 
     if (entry == nullptr){
-        throw std::runtime_error("Key not found");
+        return;
     }else{
         if (prev == nullptr){
             table[hashValue] = entry->next;
